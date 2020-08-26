@@ -1,6 +1,6 @@
 # Проект 4: Место
 
-Ссылка на проект: https://av365.github.io/mesto/index.html
+Ссылка на проект: https://av365.github.io/mesto/
 ### Обзор
 
 * Тема
