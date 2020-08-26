@@ -1,11 +1,11 @@
-.card-item__text {
+.card-item__title {
 
     font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
 
-    color: var(--color-content2);
+    color: var(--color-content-bg);
 
     padding: 0;
     margin: 0;

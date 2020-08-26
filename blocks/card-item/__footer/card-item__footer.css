@@ -1,6 +1,6 @@
-.card-item__title {
+.card-item__footer {
 
-    background-color: var(--color-content1);
+    background-color: var(--color-content-text);
     height: 79px;
     margin: 0;
     padding: 25px 21px 31px 21px;

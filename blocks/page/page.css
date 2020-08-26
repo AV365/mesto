@@ -13,12 +13,12 @@
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
 
-    --color-content1: #fff;
-    --color-content2: #000;
-    --color-content3: #545454;
+    --color-content-text: #fff;
+    --color-content-bg: #000;
+    --color-content-additional: #545454;
 
 
-    background-color: var(--color-content2);
+    background-color: var(--color-content-bg);
     max-width: 882px;
 
 }
