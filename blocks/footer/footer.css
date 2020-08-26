@@ -1,0 +1,33 @@
+.footer {
+
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: var(--color-content3);
+
+    margin-bottom: 60px;
+}
+
+
+@media screen and (max-width: 882px) {
+
+    .footer {
+
+        padding-left: 27px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+
+    .footer {
+
+        padding-left: 19px;
+        margin-bottom: 36px;
+    }
+
+}
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./pages/index.css">
+    <title>Mesto Russia</title>
+</head>
+<body class="page">
+<header class="header">
+    <img src="images/logo-mesto.svg" class="logo" alt="Логотип Mesto Russia">
+</header>
+<main>
+    <section class="profile">
+        <img src="images/avatar-img.jpg" class="profile__avatar" alt="Фотография на аватарке">
+        <div class="profile__person_info">
+            <h1 class="profile__person" id="profileName">Жак-Ив Кусто</h1>
+
+            <button class="button button_edit" id="editButton"></button>
+            <p class="profile__job" id="profileJob">Исследователь океана</p>
+        </div>
+
+        <button class="button button_add"></button>
+    </section>
+    <section>
+        <ul class="cards">
+            <li class="cards-item">
+                <img src="images/photo1.jpg" class="card-item__pic" alt="Каменные грибы Алтая в Чулышманской долине">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Алтай</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+            <li class="cards-item">
+                <img src="images/photo2.jpg" class="card-item__pic"
+                     alt="Фотография прилива на закате у мысла Фиолент в Крыму">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Крым</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+            <li class="cards-item">
+                <img src="images/photo3.jpg" class="card-item__pic"
+                     alt="Фотография зимнего Баренцева моря у берега Териберки">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Териберка</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+            <li class="cards-item">
+                <img src="images/photo4.jpg" class="card-item__pic"
+                     alt="Замерзший берег Балтийского моря в Калининградской области">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Калининград</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+            <li class="cards-item">
+                <img src="images/photo5.jpg" class="card-item__pic" alt="Лавовые поля Камчатки">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Камчатка</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+            <li class="cards-item">
+                <img src="images/photo6.jpg" class="card-item__pic" alt="Рассвет на пике Уфа в Башкортостане">
+                <div class="card-item__title">
+                    <h2 class="card-item__text">Башкирия</h2>
+                    <button class="button button_like"></button>
+                </div>
+            </li>
+        </ul>
+    </section>
+</main>
+<footer class="footer">© 2020 Mesto Russia</footer>
+</body>
+<section id="popup" class="popup popup">
+    <div class="popup__container">
+        <form class="form">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <fieldset class="form__profile-set">
+                <label><input type="text" class="form__input form__profile-name" id="editProfileName"></label>
+                <label><input type="text" class="form__input form__profile-job" id="editProfileJob"></label>
+            </fieldset>
+            <input type="submit" class="button button_save" value="Сохранить" id="submitButton">
+        </form>
+        <button class="button button_close" id="closeButton"></button>
+    </div>
+</section>
+<script src="./scripts/script.js"></script>
+</html>
