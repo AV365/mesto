@@ -9,16 +9,20 @@ let formElement = document.querySelector('.form'); // Воспользуйтес
 let nameInput = document.querySelector('.form__profile-name');
 let jobInput = document.querySelector('.form__profile-job');
 
+let nameNow = document.querySelector('.profile__person');
+let jobNow = document.querySelector('.profile__job');
+
+// Выберите элементы, куда должны быть вставлены значения полей
+let name = document.querySelector('.profile__person');
+let job = document.querySelector('.profile__job');
+
 function showPopup() {
 
     popup.classList.toggle('popup_opened');
 
-    let nameNow = document.querySelector('.profile__person').textContent;
-    let jobNow = document.querySelector('.profile__job').textContent;
 
-
-    nameInput.value = nameNow;
-    jobInput.value = jobNow;
+    nameInput.value = nameNow.textContent;
+    jobInput.value = jobNow.textContent;
 }
 
 
@@ -29,14 +33,6 @@ function formSubmitHandler(evt) {
 // Получите значение полей из свойства value
     let nameNew = document.querySelector('#editProfileName').value;
     let jobNew = document.querySelector('#editProfileJob').value;
-
-// let nameNew = nameInput.value;
-// let jobNew = jobInput.value;
-
-// Выберите элементы, куда должны быть вставлены значения полей
-    let name = document.querySelector('.profile__person');
-    let job = document.querySelector('.profile__job');
-
 
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     // Так мы можем определить свою логику отправки.
