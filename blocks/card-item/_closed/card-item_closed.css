@@ -1,0 +1,6 @@
+.card-item_closed {
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.15s linear;
+}

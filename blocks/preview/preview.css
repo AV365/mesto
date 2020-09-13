@@ -1,0 +1,17 @@
+
+.preview {
+    position: fixed;
+    width: 75vw;
+    max-height: 75vh;
+    margin: auto auto;
+
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+
+}
+
+
