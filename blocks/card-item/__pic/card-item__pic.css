@@ -5,3 +5,13 @@
     height: 282px;
     object-fit: cover;
 }
+
+
+.card-item__pic:hover {
+
+
+    opacity: .8;
+    cursor: pointer;
+
+
+}

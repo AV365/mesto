@@ -24,66 +24,55 @@
     </section>
     <section>
         <ul class="cards">
-            <li class="card-item">
-                <img src="images/photo1.jpg" class="card-item__pic" alt="Каменные грибы Алтая в Чулышманской долине">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Алтай</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
-            <li class="card-item">
-                <img src="images/photo2.jpg" class="card-item__pic"
-                     alt="Фотография прилива на закате у мысла Фиолент в Крыму">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Крым</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
-            <li class="card-item">
-                <img src="images/photo3.jpg" class="card-item__pic"
-                     alt="Фотография зимнего Баренцева моря у берега Териберки">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Териберка</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
-            <li class="card-item">
-                <img src="images/photo4.jpg" class="card-item__pic"
-                     alt="Замерзший берег Балтийского моря в Калининградской области">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Калининград</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
-            <li class="card-item">
-                <img src="images/photo5.jpg" class="card-item__pic" alt="Лавовые поля Камчатки">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Камчатка</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
-            <li class="card-item">
-                <img src="images/photo6.jpg" class="card-item__pic" alt="Рассвет на пике Уфа в Башкортостане">
-                <div class="card-item__footer">
-                    <h2 class="card-item__title">Башкирия</h2>
-                    <button aria-label="Нравится" type="button" class="button button_like"></button>
-                </div>
-            </li>
+            <template class="js-card-item-template">
+                <li class="card-item">
+                    <img src="SRC" class="card-item__pic" alt="ALT" onerror="nullImg(this)">
+                    <div class="card-item__footer">
+                        <h2 class="card-item__title">TITLE</h2>
+                        <button aria-label="Нравится" type="button" class="button button_like js-card-like"></button>
+                    </div>
+                    <button aria-label="Удалить карточку" type="button"
+                            class="button button_delete js-card-delete"></button>
+                </li>
+            </template>
         </ul>
     </section>
 </main>
 <footer class="footer"><p class="footer__copyright">© 2020 Mesto Russia</p></footer>
-<section id="popup" class="popup">
+<section id="popup" class="popup popup_theme_neutral js-popup-profile">
     <div class="popup__container">
-        <form class="form">
+        <form class="form js-form-profile">
             <h2 class="form__title">Редактировать профиль</h2>
-            <fieldset class="form__profile-set">
-                <label><input placeholder="Имя" type="text" class="form__input form__profile-name" id="editProfileName"></label>
-                <label><input placeholder="О себе" type="text" class="form__input form__profile-job"
-                              id="editProfileJob"></label>
+            <fieldset class="form__set">
+                <label><input placeholder="Имя" type="text" class="form__input form__profile-name"></label>
+                <label><input placeholder="О себе" type="text" class="form__input form__profile-job"></label>
+            </fieldset>
+            <button aria-label="Сохранить" type="submit" class="button button_save js-btn-save-profile"
+                    id="submitButton">Сохранить
+            </button>
+        </form>
+        <button aria-label="Закрыть окно" type="button" class="button button_close js-btn-close-profile"
+                id="closeButton"></button>
+    </div>
+</section>
+<section id="popup" class="popup popup_theme_neutral js-popup-card">
+    <div class="popup__container">
+        <form class="form js-form-card">
+            <h2 class="form__title">Новое место</h2>
+            <fieldset class="form__set">
+                <label><input placeholder="Название" type="text" class="form__input form__card-name"></label>
+                <label><input placeholder="Ссылка на картинку" type="text" class="form__input form__card-url"></label>
             </fieldset>
             <button aria-label="Сохранить" type="submit" class="button button_save" id="submitButton">Сохранить</button>
         </form>
+        <button aria-label="Закрыть окно" type="button" class="button button_close" id="closeButton"></button>
+    </div>
+</section>
+<section id="popup" class="popup popup_theme_dark js-popup-place">
+
+    <div class="preview">
+        <img src="images/photo1.jpg" alt="ALT" class="preview__image">
+        <p class="preview__title">Название фотографии</p>
         <button aria-label="Закрыть окно" type="button" class="button button_close" id="closeButton"></button>
     </div>
 </section>

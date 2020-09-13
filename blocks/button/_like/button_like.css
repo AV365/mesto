@@ -8,5 +8,13 @@
 
     border: 0;
     background-color: var(--color-content-text);
+    outline: none;
+}
+
+
+.button_like:hover {
+
+    opacity: .6;
+    cursor: pointer;
 
 }
