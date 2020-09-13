@@ -17,7 +17,7 @@ const initialCards = [
     },
     {
         name: 'Камчатка',
-        link: 'https://av365.github.io/mesto/images/photo5.jpg'
+        link: 'https://av365.github.io/mesto/images/photo5.png'
     },
     {
         name: 'Башкирия',
