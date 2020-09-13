@@ -134,18 +134,6 @@ function formCardSubmitHandler(evt) {
 
 }
 
-// function checkImg(url) {
-//
-//     let tmpImg = document.createElement('img');
-//     let statusImg = false;
-//     tmpImg.src = url;
-//
-//     tmpImg.onerror = function() {statusImg = false;}
-//     tmpImg.onload = function()  {statusImg = true;}
-//
-//     return statusImg;
-// }
-
 
 function createCard(card) {
 
