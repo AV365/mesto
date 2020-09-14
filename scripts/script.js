@@ -50,6 +50,7 @@ const titlePreview = document.querySelector('.preview__title');
 const cardSection = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.js-card-item-template').content;
 
+
 function nullImg(element) {
 
     const replaceImg = element.closest('.card-item__pic');
@@ -139,8 +140,9 @@ function createCard(card) {
     let imgButton = cardNew.querySelector('.card-item__pic');
     imgButton.addEventListener('click', showPopup);
 
-    cardSection.appendChild(cardNew);
+    const myCards = document.querySelector('.card-item');
 
+    cardSection.insertBefore(cardNew, myCards);
 }
 
 function initCards(cards) {
@@ -177,4 +179,4 @@ function addButtonsListeners() {
 
 addButtonsListeners();
 
-initCards(initialCards);
+initCards(initialCards.reverse());
