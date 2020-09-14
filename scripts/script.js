@@ -31,7 +31,6 @@ const popupCard = document.querySelector('.js-popup-card');
 const popupPlace = document.querySelector('.js-popup-place');
 
 const editButton = document.querySelector('.button_edit');
-
 const addCardButton = document.querySelector('.button_add');
 
 // Находим форму в DOM
@@ -40,7 +39,6 @@ const formElementCard = document.querySelector('.js-form-card');
 
 let nameInput = document.querySelector('.form__profile-name');
 let jobInput = document.querySelector('.form__profile-job');
-
 let placeInput = document.querySelector('.form__card-name');
 
 let nameNow = document.querySelector('.profile__person');
