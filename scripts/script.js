@@ -33,31 +33,26 @@ const popupPlace = document.querySelector('.js-popup-place');
 const editButton = document.querySelector('.button_edit');
 const addCardButton = document.querySelector('.button_add');
 
-// Находим форму в DOM
 const formElementProfile = document.querySelector('.js-form-profile');
 const formElementCard = document.querySelector('.js-form-card');
 
-let nameInput = document.querySelector('.form__profile-name');
-let jobInput = document.querySelector('.form__profile-job');
-let placeInput = document.querySelector('.form__card-name');
+const nameInput = document.querySelector('.form__profile-name');
+const jobInput = document.querySelector('.form__profile-job');
+const placeInput = document.querySelector('.form__card-name');
+const urlInput = document.querySelector('.form__card-url');
 
-let nameNow = document.querySelector('.profile__person');
-let jobNow = document.querySelector('.profile__job');
+const nameNow = document.querySelector('.profile__person');
+const jobNow = document.querySelector('.profile__job');
 
-// Выберите элементы, куда должны быть вставлены значения полей
-let name = document.querySelector('.profile__person');
-let job = document.querySelector('.profile__job');
-
-//Превью фото
-let imagePreview = document.querySelector('.preview__image');
-let titlePreview = document.querySelector('.preview__title');
+const imagePreview = document.querySelector('.preview__image');
+const titlePreview = document.querySelector('.preview__title');
 
 const cardSection = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.js-card-item-template').content;
 
 function nullImg(element) {
 
-    let replaceImg = element.closest('.card-item__pic');
+    const replaceImg = element.closest('.card-item__pic');
     replaceImg.attributes.src.value = './images/no-image.svg';
 
 }
@@ -67,8 +62,6 @@ function showPopup(evt) {
     if (evt.target.classList.contains('button_edit')) {
 
         popupProfile.classList.toggle('popup_opened');
-        let closeButton = popupProfile.querySelector('.button_close');
-        closeButton.addEventListener('click', closePopup);
 
         nameInput.value = nameNow.textContent;
         jobInput.value = jobNow.textContent;
@@ -77,8 +70,7 @@ function showPopup(evt) {
 
         popupCard.classList.toggle('popup_opened');
         placeInput.focus();
-        let closeButton = popupCard.querySelector('.button_close');
-        closeButton.addEventListener('click', closePopup);
+
     } else if (evt.target.classList.contains('card-item__pic')) {
         popupPlace.classList.toggle('popup_opened');
 
@@ -86,8 +78,6 @@ function showPopup(evt) {
         titlePreview.innerText = evt.target.attributes.alt.value;
         imagePreview.alt = evt.target.attributes.alt.value;
 
-        let closeButton = popupPlace.querySelector('.button_close');
-        closeButton.addEventListener('click', closePopup);
     }
 
 
@@ -102,12 +92,9 @@ function closePopup(evt) {
 
 function formProfileSubmitHandler(evt) {
 
-    let nameNew = document.querySelector('.form__profile-name').value;
-    let jobNew = document.querySelector('.form__profile-job').value;
-
     evt.preventDefault();
-    name.textContent = nameNew;
-    job.textContent = jobNew;
+    nameNow.textContent = nameInput.value;
+    jobNow.textContent = jobInput.value;
 
     popupProfile.classList.toggle('popup_opened');
 }
@@ -115,18 +102,15 @@ function formProfileSubmitHandler(evt) {
 
 function formCardSubmitHandler(evt) {
 
-
-    let placeNew = document.querySelector('.form__card-name');
-    let urlNew = document.querySelector('.form__card-url');
     evt.preventDefault();
 
-    let addPlace = [];
-    addPlace['name'] = placeNew.value;
-    addPlace['link'] = urlNew.value;
+    const addPlace = {};
+    addPlace['name'] = placeInput.value;
+    addPlace['link'] = urlInput.value;
 
     createCard(addPlace);
-    placeNew.value = '';
-    urlNew.value = '';
+    placeInput.value = '';
+    urlInput.value = '';
 
     popupCard.classList.toggle('popup_opened');
 
@@ -139,10 +123,11 @@ function createCard(card) {
     let cardNew = cardTemplate.cloneNode(true);
 
     cardNew.querySelector('.card-item__title').innerText = card.name;
-    cardNew.querySelector('.card-item__pic').attributes.src.value = card.link;
 
+    const cardImg = cardNew.querySelector('.card-item__pic');
 
-    cardNew.querySelector('.card-item__pic').attributes.alt.value = card.name;
+    cardImg.src = card.link;
+    cardImg.alt = card.name;
 
     let deleteButton = cardNew.querySelector('.js-card-delete');
     deleteButton.addEventListener('click', deleteCard);
@@ -177,12 +162,18 @@ function likeCard(evt) {
 
 }
 
-editButton.addEventListener('click', showPopup);
-addCardButton.addEventListener('click', showPopup);
+function addButtonsListeners() {
+
+    editButton.addEventListener('click', showPopup);
+    addCardButton.addEventListener('click', showPopup);
+
+    document.querySelectorAll('.button_close').forEach((button) => button.addEventListener('click', closePopup));
+
+    formElementProfile.addEventListener('submit', formProfileSubmitHandler);
+    formElementCard.addEventListener('submit', formCardSubmitHandler);
+}
 
 
-formElementProfile.addEventListener('submit', formProfileSubmitHandler);
-formElementCard.addEventListener('submit', formCardSubmitHandler);
-
+addButtonsListeners();
 
 initCards(initialCards);
