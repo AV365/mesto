@@ -53,6 +53,7 @@ const cardTemplate = document.querySelector('.js-card-item-template').content;
 function nullImg(element) {
 
     const replaceImg = element.closest('.card-item__pic');
+
     replaceImg.attributes.src.value = './images/no-image.svg';
 
 }
