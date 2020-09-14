@@ -143,6 +143,8 @@ function createCard(card) {
     const myCards = document.querySelector('.card-item');
 
     cardSection.insertBefore(cardNew, myCards);
+
+
 }
 
 function initCards(cards) {
