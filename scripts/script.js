@@ -122,27 +122,27 @@ function formCardSubmitHandler(evt) {
 function createCard(card) {
 
 
-    let cardNew = cardTemplate.cloneNode(true);
+    const newCard = cardTemplate.cloneNode(true);
 
-    cardNew.querySelector('.card-item__title').innerText = card.name;
+    newCard.querySelector('.card-item__title').innerText = card.name;
 
-    const cardImg = cardNew.querySelector('.card-item__pic');
+    const cardImg = newCard.querySelector('.card-item__pic');
 
     cardImg.src = card.link;
     cardImg.alt = card.name;
 
-    let deleteButton = cardNew.querySelector('.js-card-delete');
+    const deleteButton = newCard.querySelector('.js-card-delete');
     deleteButton.addEventListener('click', deleteCard);
 
-    let likeButton = cardNew.querySelector('.js-card-like');
+    const likeButton = newCard.querySelector('.js-card-like');
     likeButton.addEventListener('click', likeCard);
 
-    let imgButton = cardNew.querySelector('.card-item__pic');
+    const imgButton = newCard.querySelector('.card-item__pic');
     imgButton.addEventListener('click', showPopup);
 
     const myCards = document.querySelector('.card-item');
 
-    cardSection.insertBefore(cardNew, myCards);
+    cardSection.insertBefore(newCard, myCards);
 
 
 }
@@ -152,17 +152,19 @@ function initCards(cards) {
 }
 
 function deleteCard(evt) {
-    let deleteCard = evt.target.parentNode;
-    deleteCard.classList.toggle('card-item_closed');
+    const deleteItem = evt.target.parentNode;
+
+    //через добавление класса и setTimout делаю "плавное" удаление, карточка сначала "затухает"
+    deleteItem.classList.toggle('card-item_closed');
 
     setTimeout(function () {
-        deleteCard.remove()
+        deleteItem.remove()
     }, 150);
 
 }
 
 function likeCard(evt) {
-    let likeCard = evt.target;
+    const likeCard = evt.target;
     likeCard.classList.toggle('button_like-isset');
 
 }
