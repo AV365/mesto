@@ -51,6 +51,8 @@ const cardSection = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.js-card-item-template').content;
 
 
+
+
 function nullImg(element) {
 
     const replaceImg = element.closest('.card-item__pic');
@@ -61,17 +63,25 @@ function nullImg(element) {
 
 function showPopup(evt) {
 
+    document.addEventListener('keyup', escListener, false);
+
     if (evt.target.classList.contains('button_edit')) {
 
         popupProfile.classList.toggle('popup_opened');
 
         nameInput.value = nameNow.textContent;
+        nameInput.focus();
         jobInput.value = jobNow.textContent;
+
+        popupProfile.addEventListener('click', outListener, false);
+
 
     } else if (evt.target.classList.contains('button_add')) {
 
         popupCard.classList.toggle('popup_opened');
         placeInput.focus();
+
+        popupCard.addEventListener('click', outListener, false);
 
     } else if (evt.target.classList.contains('card-item__pic')) {
         popupPlace.classList.toggle('popup_opened');
@@ -80,16 +90,43 @@ function showPopup(evt) {
         titlePreview.innerText = evt.target.attributes.alt.value;
         imagePreview.alt = evt.target.attributes.alt.value;
 
+        popupPlace.addEventListener('click', outListener, false);
+
     }
 
 
 }
 
-function closePopup(evt) {
-    const currentPopup = evt.target.closest('section');
-    currentPopup.classList.toggle('popup_opened');
+function outListener(evt) {
+    if(evt.target === evt.currentTarget)
+
+    {
+
+        closePopup(evt);
+    }
+
 
 }
+
+
+function escListener(evt) {
+
+    if (evt.key === "Escape") {
+        closePopup();
+        document.removeEventListener('keyup', escListener, false);
+    }
+
+
+}
+
+
+function closePopup(evt) {
+    const openedPopup = document.querySelector('.popup_opened');
+    //const currentPopup = evt.target.closest('section');
+    openedPopup.classList.toggle('popup_opened');
+
+}
+
 
 
 function formProfileSubmitHandler(evt) {
@@ -179,6 +216,8 @@ function addButtonsListeners() {
     formElementProfile.addEventListener('submit', formProfileSubmitHandler);
     formElementCard.addEventListener('submit', formCardSubmitHandler);
 }
+
+
 
 
 addButtonsListeners();

@@ -41,11 +41,11 @@
 <footer class="footer"><p class="footer__copyright">© 2020 Mesto Russia</p></footer>
 <section id="popup" class="popup popup_theme_neutral js-popup-profile">
     <div class="popup__container">
-        <form class="form js-form-profile">
+        <form class="form js-form-profile" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
             <fieldset class="form__set">
-                <label><input placeholder="Имя" type="text" class="form__input form__profile-name"></label>
-                <label><input placeholder="О себе" type="text" class="form__input form__profile-job"></label>
+                <label><input placeholder="Имя" type="text" class="form__input form__profile-name" required minlength="2" maxlength="40"></label>
+                <label><input placeholder="О себе" type="text" class="form__input form__profile-job" required minlength="2" maxlength="200"></label>
             </fieldset>
             <button aria-label="Сохранить" type="submit" class="button button_save js-btn-save-profile">Сохранить
             </button>
@@ -55,11 +55,11 @@
 </section>
 <section id="popup" class="popup popup_theme_neutral js-popup-card">
     <div class="popup__container">
-        <form class="form js-form-card">
+         <form class="form js-form-card" novalidate>
             <h2 class="form__title">Новое место</h2>
             <fieldset class="form__set">
-                <label><input placeholder="Название" type="text" class="form__input form__card-name"></label>
-                <label><input placeholder="Ссылка на картинку" type="text" class="form__input form__card-url"></label>
+                <label><input placeholder="Название" type="text" class="form__input form__card-name" required  minlength="2" maxlength="30"></label>
+                <label><input placeholder="Ссылка на картинку" type="url" class="form__input form__card-url" required></label>
             </fieldset>
             <button aria-label="Сохранить" type="submit" class="button button_save">Сохранить</button>
         </form>
@@ -73,6 +73,8 @@
         <button aria-label="Закрыть окно" type="button" class="button button_close"></button>
     </div>
 </section>
-<script src="./scripts/script.js"></script>
+<script src="./scripts/script.js" defer></script>
+<script src="./scripts/validate.js" defer></script>
 </body>
 </html>
+
