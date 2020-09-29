@@ -5,11 +5,18 @@ function enableValidation(settings) {
     forms.forEach(formElement => {
         formElement.addEventListener('submit', function (evt) {
             evt.preventDefault();
+            disableSaveBtn(formElement, settings);
         });
         setEventListeners(formElement, settings);
+
     });
 }
 
+
+const disableSaveBtn = (formElement, settings) => {
+    saveBtn = formElement.querySelector(settings['submitButtonSelector']);
+    saveBtn.classList.add(settings['button_disabled']);
+}
 
 const setEventListeners = (formElement, settings) => {
 
@@ -48,7 +55,7 @@ function toggleButtonState(inputList, buttonElement, settings) {
 
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(settings['inactiveButtonClass']);
-        buttonElement.setAttribute("disabled", true);
+        buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove(settings['inactiveButtonClass']);
         buttonElement.removeAttribute("disabled");

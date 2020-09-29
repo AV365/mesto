@@ -26,7 +26,8 @@
         <ul class="cards">
             <template class="js-card-item-template">
                 <li class="card-item">
-                    <img src="SRC" class="card-item__pic" alt="ALT" onerror="nullImg(this)">
+                    <!--                    <img src="SRC" class="card-item__pic" alt="ALT" onerror="nullImg(this)">-->
+                    <img src="SRC" class="card-item__pic" alt="ALT">
                     <div class="card-item__footer">
                         <h2 class="card-item__title">TITLE</h2>
                         <button aria-label="Нравится" type="button" class="button button_like js-card-like"></button>
@@ -75,11 +76,13 @@
     </div>
 </section>
 <section id="popup" class="popup popup_theme_dark js-popup-place">
-    <div class="preview">
-        <img src="images/photo1.jpg" alt="ALT" class="preview__image">
-        <p class="preview__title">Название фотографии</p>
-        <button aria-label="Закрыть окно" type="button" class="button button_close"></button>
-    </div>
+    <ul class="preview">
+        <li>
+            <img src="images/photo1.jpg" alt="ALT" class="preview__image">
+            <p class="preview__title">Название фотографии</p>
+            <button aria-label="Закрыть окно" type="button" class="button button_close"></button>
+        </li>
+    </ul>
 </section>
 <script src="./scripts/script.js" defer></script>
 <script src="./scripts/validate.js" defer></script>
