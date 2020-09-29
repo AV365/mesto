@@ -99,9 +99,7 @@ function showPopup(evt) {
 
 function outListener(evt) {
     if(evt.target === evt.currentTarget)
-
     {
-
         closePopup(evt);
     }
 
