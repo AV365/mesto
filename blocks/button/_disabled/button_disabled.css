@@ -1,6 +1,6 @@
 .button_disabled {
 
-opacity: .1;
+    opacity: .1;
     border-radius: 2px;
     border: 1px solid var(--color-content-text);
     background-color: var(--color-content-text);

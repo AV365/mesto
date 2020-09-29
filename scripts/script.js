@@ -51,8 +51,6 @@ const cardSection = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.js-card-item-template').content;
 
 
-
-
 function nullImg(element) {
 
     const replaceImg = element.closest('.card-item__pic');
@@ -98,8 +96,7 @@ function showPopup(evt) {
 }
 
 function outListener(evt) {
-    if(evt.target === evt.currentTarget)
-    {
+    if (evt.target === evt.currentTarget) {
         closePopup(evt);
     }
 
@@ -124,7 +121,6 @@ function closePopup(evt) {
     openedPopup.classList.toggle('popup_opened');
 
 }
-
 
 
 function formProfileSubmitHandler(evt) {
@@ -214,8 +210,6 @@ function addButtonsListeners() {
     formElementProfile.addEventListener('submit', formProfileSubmitHandler);
     formElementCard.addEventListener('submit', formCardSubmitHandler);
 }
-
-
 
 
 addButtonsListeners();
