@@ -71,7 +71,7 @@ function showPopup(evt) {
         nameInput.focus();
         jobInput.value = jobNow.textContent;
 
-        popupProfile.addEventListener('click', outListener, false);
+        popupProfile.addEventListener('mousedown', outListener, false);
 
 
     } else if (evt.target.classList.contains('button_add')) {
@@ -79,7 +79,7 @@ function showPopup(evt) {
         popupCard.classList.toggle('popup_opened');
         placeInput.focus();
 
-        popupCard.addEventListener('click', outListener, false);
+        popupCard.addEventListener('mousedown', outListener, false);
 
     } else if (evt.target.classList.contains('card-item__pic')) {
         popupPlace.classList.toggle('popup_opened');
@@ -88,7 +88,7 @@ function showPopup(evt) {
         titlePreview.innerText = evt.target.attributes.alt.value;
         imagePreview.alt = evt.target.attributes.alt.value;
 
-        popupPlace.addEventListener('click', outListener, false);
+        popupPlace.addEventListener('mousedown', outListener, false);
 
     }
 
