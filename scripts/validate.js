@@ -86,6 +86,7 @@ const hideInputError = (inputElement, settings) => {
     errorElement.classList.remove(settings['errorClass']);
 
     inputElement.classList.remove(settings['inputErrorClass']);
+
 };
 
 
