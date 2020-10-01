@@ -52,25 +52,14 @@ const cardSection = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.js-card-item-template').content;
 
 
-// function nullImg(element) {
-//
-//     const replaceImg = element.closest('.card-item__pic');
-//     replaceImg.attributes.src.value = './images/no-image.svg';
-//
-// }
-
 function setPopupOpened(element) {
-
     element.classList.add('popup_opened');
-
 }
 
 function showPopup(evt) {
-
     document.addEventListener('keyup', escListener);
 
     if (evt.target.classList.contains('button_edit')) {
-
         setPopupOpened(popupProfile);
         nameInput.value = nameNow.textContent;
         nameInput.focus();
@@ -78,40 +67,30 @@ function showPopup(evt) {
     }
 
     if (evt.target.classList.contains('button_add')) {
-
         setPopupOpened(popupCard);
         placeInput.focus();
-
     }
 
     if (evt.target.classList.contains('card-item__pic')) {
-
         setPopupOpened(popupPlace);
         imagePreview.src = evt.target.attributes.src.value;
         titlePreview.innerText = evt.target.attributes.alt.value;
         imagePreview.alt = evt.target.attributes.alt.value;
     }
-
-
 }
 
 function outListener(evt) {
     if (evt.target === evt.currentTarget) {
         closePopup(evt);
     }
-
-
 }
 
 
 function escListener(evt) {
-
     if (evt.key === "Escape") {
         closePopup();
         document.removeEventListener('keyup', escListener);
     }
-
-
 }
 
 
@@ -122,7 +101,6 @@ function closePopup(evt) {
 
 
 function formProfileSubmitHandler(evt) {
-
     evt.preventDefault();
     nameNow.textContent = nameInput.value;
     jobNow.textContent = jobInput.value;
@@ -131,7 +109,6 @@ function formProfileSubmitHandler(evt) {
 
 
 function formCardSubmitHandler(evt) {
-
     evt.preventDefault();
 
     const addPlace = {};
@@ -139,17 +116,12 @@ function formCardSubmitHandler(evt) {
     addPlace['link'] = urlInput.value;
 
     createCard(addPlace);
-
     formElementCard.reset();
-
     closePopup();
-
 }
 
 
 function createCard(card) {
-
-
     const newCard = cardTemplate.cloneNode(true);
 
     newCard.querySelector('.card-item__title').innerText = card.name;
@@ -171,12 +143,10 @@ function createCard(card) {
     const myCards = document.querySelector('.card-item');
 
     addCard(newCard);
-
 }
 
 
 function addCard(cardElement) {
-
     cardSection.prepend(cardElement);
 }
 
@@ -192,17 +162,14 @@ function deleteCard(evt) {
     deleteItem.addEventListener('transitionend', () => {
         deleteItem.remove();
     });
-
 }
 
 function likeCard(evt) {
     const likeCard = evt.target;
     likeCard.classList.toggle('button_like-isset');
-
 }
 
 function addButtonsListeners() {
-
     editButton.addEventListener('click', showPopup);
     addCardButton.addEventListener('click', showPopup);
 

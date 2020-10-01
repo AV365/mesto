@@ -1,5 +1,4 @@
 function enableValidation(settings) {
-
     const forms = document.querySelectorAll(settings['formSelector']);
 
     forms.forEach(formElement => {
@@ -8,18 +7,15 @@ function enableValidation(settings) {
             disableSaveBtn(formElement, settings);
         });
         setEventListeners(formElement, settings);
-
     });
 }
 
-
 const disableSaveBtn = (formElement, settings) => {
     saveBtn = formElement.querySelector(settings['submitButtonSelector']);
-    saveBtn.classList.add(settings['button_disabled']);
+    saveBtn.classList.add(settings.inactiveButtonClass);
 }
 
 const setEventListeners = (formElement, settings) => {
-
     const inputs = Array.from(formElement.querySelectorAll(settings['inputSelector']));
     const saveBtn = formElement.querySelector(settings['submitButtonSelector']);
     toggleButtonState(inputs, saveBtn, settings);
@@ -31,28 +27,22 @@ const setEventListeners = (formElement, settings) => {
             })
         }
     );
-
 }
 
 function inputIsValid(inputElement) {
-
     return inputElement.validity.valid;
-
 }
 
 function checkValidity(inputElement, settings) {
-
     if (!inputIsValid(inputElement)) {
         showInputError(inputElement, settings);
     } else {
         hideInputError(inputElement, settings);
     }
-
 }
 
 
 function toggleButtonState(inputList, buttonElement, settings) {
-
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(settings['inactiveButtonClass']);
         buttonElement.disabled = true;
@@ -60,22 +50,16 @@ function toggleButtonState(inputList, buttonElement, settings) {
         buttonElement.classList.remove(settings['inactiveButtonClass']);
         buttonElement.removeAttribute("disabled");
     }
-
 }
 
 function hasInvalidInput(inputList) {
-
     return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
     });
-
 }
 
-
 const showInputError = (inputElement, settings) => {
-
     const inputId = inputElement.id;
-
 
     errorElement = document.querySelector(`#${inputId}-error`);
 
@@ -86,16 +70,13 @@ const showInputError = (inputElement, settings) => {
 };
 
 const hideInputError = (inputElement, settings) => {
-
     const inputId = inputElement.id;
     errorElement = document.querySelector(`#${inputId}-error`);
     errorElement.textContent = '';
     errorElement.classList.remove(settings['errorClass']);
 
     inputElement.classList.remove(settings['inputErrorClass']);
-
 };
-
 
 enableValidation({
     formSelector: '.form',
@@ -105,5 +86,3 @@ enableValidation({
     inputErrorClass: 'form__input_type_error',
     errorClass: 'form__error_active'
 });
-
-
