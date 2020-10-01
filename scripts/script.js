@@ -23,7 +23,6 @@ const initialCards = [
         name: 'Башкирия',
         link: 'https://av365.github.io/mesto/images/photo6.jpg'
     },
-
 ];
 
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -56,35 +55,36 @@ function setPopupOpened(element) {
     element.classList.add('popup_opened');
 }
 
-function showPopup(evt) {
+
+function showPopupProfile() {
+    setPopupOpened(popupProfile);
+    setEscListener();
+    nameInput.value = nameNow.textContent;
+    nameInput.focus();
+    jobInput.value = jobNow.textContent;
+}
+
+
+function showPopupAddCard() {
+    setPopupOpened(popupCard);
+    setEscListener();
+    placeInput.focus();
+}
+
+
+function showPopupCardPreview(evt) {
+    setPopupOpened(popupPlace);
+    setEscListener();
+
+    imagePreview.src = evt.target.attributes.src.value;
+    titlePreview.innerText = evt.target.attributes.alt.value;
+    imagePreview.alt = evt.target.attributes.alt.value;
+}
+
+
+function setEscListener() {
     document.addEventListener('keyup', escListener);
-
-    if (evt.target.classList.contains('button_edit')) {
-        setPopupOpened(popupProfile);
-        nameInput.value = nameNow.textContent;
-        nameInput.focus();
-        jobInput.value = jobNow.textContent;
-    }
-
-    if (evt.target.classList.contains('button_add')) {
-        setPopupOpened(popupCard);
-        placeInput.focus();
-    }
-
-    if (evt.target.classList.contains('card-item__pic')) {
-        setPopupOpened(popupPlace);
-        imagePreview.src = evt.target.attributes.src.value;
-        titlePreview.innerText = evt.target.attributes.alt.value;
-        imagePreview.alt = evt.target.attributes.alt.value;
-    }
 }
-
-function outListener(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(evt);
-    }
-}
-
 
 function escListener(evt) {
     if (evt.key === "Escape") {
@@ -115,7 +115,9 @@ function formCardSubmitHandler(evt) {
     addPlace['name'] = placeInput.value;
     addPlace['link'] = urlInput.value;
 
-    createCard(addPlace);
+    const newCard = createCard(addPlace);
+    addCard(newCard);
+
     formElementCard.reset();
     closePopup();
 }
@@ -138,11 +140,9 @@ function createCard(card) {
     likeButton.addEventListener('click', likeCard);
 
     const imgButton = newCard.querySelector('.card-item__pic');
-    imgButton.addEventListener('click', showPopup);
+    imgButton.addEventListener('click', showPopupCardPreview);
 
-    const myCards = document.querySelector('.card-item');
-
-    addCard(newCard);
+    return newCard;
 }
 
 
@@ -152,7 +152,10 @@ function addCard(cardElement) {
 
 
 function initCards(cards) {
-    cards.forEach(createCard);
+    cards.forEach((values) => {
+        const newCard = createCard(values);
+        addCard(newCard);
+    });
 }
 
 function deleteCard(evt) {
@@ -170,8 +173,8 @@ function likeCard(evt) {
 }
 
 function addButtonsListeners() {
-    editButton.addEventListener('click', showPopup);
-    addCardButton.addEventListener('click', showPopup);
+    editButton.addEventListener('click', showPopupProfile);
+    addCardButton.addEventListener('click', showPopupAddCard);
 
     popups.forEach(popup => {
         popup.addEventListener('click', (evt) => {
