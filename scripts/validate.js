@@ -11,8 +11,9 @@ function enableValidation(settings) {
 }
 
 const disableSaveBtn = (formElement, settings) => {
-    saveBtn = formElement.querySelector(settings['submitButtonSelector']);
+    const saveBtn = formElement.querySelector(settings['submitButtonSelector']);
     saveBtn.classList.add(settings.inactiveButtonClass);
+    saveBtn.disabled = true;
 }
 
 const setEventListeners = (formElement, settings) => {
@@ -61,7 +62,7 @@ function hasInvalidInput(inputList) {
 const showInputError = (inputElement, settings) => {
     const inputId = inputElement.id;
 
-    errorElement = document.querySelector(`#${inputId}-error`);
+    const errorElement = document.querySelector(`#${inputId}-error`);
 
     errorElement.textContent = inputElement.validationMessage;
 
@@ -71,7 +72,7 @@ const showInputError = (inputElement, settings) => {
 
 const hideInputError = (inputElement, settings) => {
     const inputId = inputElement.id;
-    errorElement = document.querySelector(`#${inputId}-error`);
+    const errorElement = document.querySelector(`#${inputId}-error`);
     errorElement.textContent = '';
     errorElement.classList.remove(settings['errorClass']);
 
