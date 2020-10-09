@@ -1,5 +1,4 @@
 const popupPlace = document.querySelector('.js-popup-place');
-const closeButton = popupPlace.querySelector('.button_close');
 
 const imagePreview = document.querySelector('.preview__image');
 const titlePreview = document.querySelector('.preview__title');
@@ -26,11 +25,6 @@ export default class Card {
 
     _like(evt) {
         evt.classList.toggle('button_like-isset');
-    }
-
-
-    _setPopupOpened(element) {
-        element.classList.add('popup_opened');
     }
 
 
