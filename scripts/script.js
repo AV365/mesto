@@ -1,23 +1,24 @@
 
 
 const popups = Array.from(document.querySelectorAll('.popup'));
-const popupProfile = document.querySelector('.js-popup-profile');
-const popupCard = document.querySelector('.js-popup-card');
-const popupPlace = document.querySelector('.js-popup-place');
+// const popupProfile = document.querySelector('.js-popup-profile');
+// const popupCard = document.querySelector('.js-popup-card');
 
-const editButton = document.querySelector('.button_edit');
-const addCardButton = document.querySelector('.button_add');
+// const popupPlace = document.querySelector('.js-popup-place');
 
-const formElementProfile = document.querySelector('.js-form-profile');
-const formElementCard = document.querySelector('.js-form-card');
-
-const nameInput = document.querySelector('.form__profile-name');
-const jobInput = document.querySelector('.form__profile-job');
-const placeInput = document.querySelector('.form__card-name');
-const urlInput = document.querySelector('.form__card-url');
-
-const nameNow = document.querySelector('.profile__person');
-const jobNow = document.querySelector('.profile__job');
+// const editButton = document.querySelector('.button_edit');
+// const addCardButton = document.querySelector('.button_add');
+//
+// const formElementProfile = document.querySelector('.js-form-profile');
+// const formElementCard = document.querySelector('.js-form-card');
+//
+// const nameInput = document.querySelector('.form__profile-name');
+// const jobInput = document.querySelector('.form__profile-job');
+// const placeInput = document.querySelector('.form__card-name');
+// const urlInput = document.querySelector('.form__card-url');
+//
+// const nameNow = document.querySelector('.profile__person');
+// const jobNow = document.querySelector('.profile__job');
 
 const imagePreview = document.querySelector('.preview__image');
 const titlePreview = document.querySelector('.preview__title');

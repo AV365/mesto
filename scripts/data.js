@@ -1,5 +1,5 @@
 
-export default const initialCards = [
+export const initialCards = [
     {
         name: 'Алтай',
         link: 'https://av365.github.io/mesto/images/photo1.jpg'
@@ -25,3 +25,12 @@ export default const initialCards = [
         link: 'https://av365.github.io/mesto/images/photo6.jpg'
     },
 ];
+
+export const validatorSettings  = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.button_save',
+    inactiveButtonClass: 'button_disabled',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__error_active'
+};
