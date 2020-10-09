@@ -1,4 +1,3 @@
-
 export const initialCards = [
     {
         name: 'Алтай',
@@ -26,7 +25,8 @@ export const initialCards = [
     },
 ];
 
-export const validatorSettings  = {
+
+export const validatorSettings = {
     formSelector: '.form',
     inputSelector: '.form__input',
     submitButtonSelector: '.button_save',

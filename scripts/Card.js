@@ -33,12 +33,14 @@ export default class Card {
         element.classList.add('popup_opened');
     }
 
+
     _remove(deleteItem) {
         deleteItem.classList.toggle('card-item_closed');
         deleteItem.addEventListener('transitionend', () => {
             deleteItem.remove();
         });
     }
+
 
     _preview(evt) {
         imagePreview.src = this._link;
@@ -48,6 +50,7 @@ export default class Card {
         this._close(popupPlace);
     }
 
+
     _getCardTemplate() {
         const template = document
             .querySelector(this._selector)
@@ -56,6 +59,7 @@ export default class Card {
             .cloneNode(true);
         return template;
     }
+
 
     _setEventListeners() {
         this._element.querySelector('.button_like').addEventListener('click', (evt) => {
