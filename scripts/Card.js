@@ -1,5 +1,4 @@
 const popupPlace = document.querySelector('.js-popup-place');
-const closeButton = popupPlace.querySelector('.button_close');
 
 const imagePreview = document.querySelector('.preview__image');
 const titlePreview = document.querySelector('.preview__title');
@@ -28,21 +27,16 @@ export default class Card {
         evt.classList.toggle('button_like-isset');
     }
 
-
-    _setPopupOpened(element) {
-        element.classList.add('popup_opened');
-    }
-
-
-    _remove(deleteItem) {
-        deleteItem.classList.toggle('card-item_closed');
-        deleteItem.addEventListener('transitionend', () => {
-            deleteItem.remove();
+    _remove() {
+        this._element.classList.toggle('card-item_closed');
+        this._element.addEventListener('transitionend', () => {
+            this._element.remove();
+            this._element = null;
         });
     }
 
 
-    _preview(evt) {
+    _preview() {
         imagePreview.src = this._link;
         titlePreview.textContent = this._name;
         imagePreview.alt = this._name;
@@ -52,12 +46,11 @@ export default class Card {
 
 
     _getCardTemplate() {
-        const template = document
+        return document
             .querySelector(this._selector)
             .content
             .querySelector('.card-item')
             .cloneNode(true);
-        return template;
     }
 
 
@@ -66,12 +59,12 @@ export default class Card {
             this._like(evt.target);
         });
 
-        this._element.querySelector('.card-item__pic').addEventListener('click', (evt) => {
+        this._element.querySelector('.card-item__pic').addEventListener('click', () => {
             this._preview(this._element);
         });
 
-        this._element.querySelector('.js-card-delete').addEventListener('click', (evt) => {
-            this._remove(this._element);
+        this._element.querySelector('.js-card-delete').addEventListener('click', () => {
+            this._remove();
         });
     }
 }

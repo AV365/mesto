@@ -25,18 +25,18 @@ const jobNow = document.querySelector('.profile__job');
 
 function setPopupOpened(element) {
     element.classList.add('popup_opened');
+    setEscListener();
 }
 
 
 const showPopupCardPreview = (popup) => {
     setPopupOpened(popup);
-    setEscListener();
 }
 
 
 function showPopupProfile() {
     setPopupOpened(popupProfile);
-    setEscListener();
+
     nameInput.value = nameNow.textContent;
     nameInput.focus();
     jobInput.value = jobNow.textContent;
@@ -45,7 +45,6 @@ function showPopupProfile() {
 
 function showPopupAddCard() {
     setPopupOpened(popupCard);
-    setEscListener();
     placeInput.focus();
 }
 
@@ -58,14 +57,14 @@ function setEscListener() {
 function escListener(evt) {
     if (evt.key === "Escape") {
         closePopup();
-        document.removeEventListener('keyup', escListener);
     }
 }
 
 
-function closePopup(evt) {
+function closePopup() {
     const openedPopup = document.querySelector('.popup_opened');
     openedPopup.classList.remove('popup_opened');
+    document.removeEventListener('keyup', escListener);
 }
 
 
@@ -77,16 +76,24 @@ function formProfileSubmitHandler(evt) {
 }
 
 
+const renderCards = (item) => {
+    item.closeFunc = showPopupCardPreview;
+    const newCard = new Card(item, '.js-card-item-template');
+    return newCard.create();
+}
+
 function formCardSubmitHandler(evt) {
     evt.preventDefault();
 
     const addPlace = {};
     addPlace['name'] = placeInput.value;
     addPlace['link'] = urlInput.value;
-    addPlace.closeFunc = showPopupCardPreview;
 
-    const newCard = new Card(addPlace, '.js-card-item-template');
-    const myCard = newCard.create();
+    const myCard = renderCards(addPlace);
+    // addPlace.closeFunc = showPopupCardPreview;
+
+    // const newCard = new Card(addPlace, '.js-card-item-template');
+    // const myCard = newCard.create();
     addCard(myCard);
 
     formElementCard.reset();
@@ -120,9 +127,12 @@ addButtonsListeners();
 
 
 initialCards.forEach((item) => {
-    item.closeFunc = showPopupCardPreview;
-    const newCard = new Card(item, '.js-card-item-template');
-    const card = newCard.create();
+
+    const card = renderCards(item);
+
+    // item.closeFunc = showPopupCardPreview;
+    // const newCard = new Card(item, '.js-card-item-template');
+    // const card = newCard.create();
 
     document.querySelector('.cards').appendChild(card);
 });
