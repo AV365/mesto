@@ -89,10 +89,6 @@ function formCardSubmitHandler(evt) {
     addPlace['link'] = urlInput.value;
 
     const myCard = renderCards(addPlace);
-    // addPlace.closeFunc = showPopupCardPreview;
-
-    // const newCard = new Card(addPlace, '.js-card-item-template');
-    // const myCard = newCard.create();
     addCard(myCard);
 
     formElementCard.reset();
