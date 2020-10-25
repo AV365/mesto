@@ -1,2 +1,4 @@
-/tmp/*
-/tmp
+/src/tmp/*
+/src/tmp
+/node_modules
+/dist

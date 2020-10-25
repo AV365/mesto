@@ -29,6 +29,7 @@ export default class Card {
 
     _remove() {
         this._element.classList.toggle('card-item_closed');
+        // Мне бы хотелось сохранить плавность удаления карточки, я изменил свойства css класса, сейчас ошибки нет.
         this._element.addEventListener('transitionend', () => {
             this._element.remove();
             this._element = null;
@@ -60,7 +61,7 @@ export default class Card {
         });
 
         this._element.querySelector('.card-item__pic').addEventListener('click', () => {
-            this._preview(this._element);
+            this._preview();
         });
 
         this._element.querySelector('.js-card-delete').addEventListener('click', () => {

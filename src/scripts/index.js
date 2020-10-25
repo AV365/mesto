@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import {initialCards, validatorSettings} from './data.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
@@ -60,7 +61,6 @@ function escListener(evt) {
     }
 }
 
-
 function closePopup() {
     const openedPopup = document.querySelector('.popup_opened');
     openedPopup.classList.remove('popup_opened');
@@ -90,10 +90,6 @@ function formCardSubmitHandler(evt) {
     addPlace['link'] = urlInput.value;
 
     const myCard = renderCards(addPlace);
-    // addPlace.closeFunc = showPopupCardPreview;
-
-    // const newCard = new Card(addPlace, '.js-card-item-template');
-    // const myCard = newCard.create();
     addCard(myCard);
 
     formElementCard.reset();
@@ -127,13 +123,7 @@ addButtonsListeners();
 
 
 initialCards.forEach((item) => {
-
     const card = renderCards(item);
-
-    // item.closeFunc = showPopupCardPreview;
-    // const newCard = new Card(item, '.js-card-item-template');
-    // const card = newCard.create();
-
     document.querySelector('.cards').appendChild(card);
 });
 
