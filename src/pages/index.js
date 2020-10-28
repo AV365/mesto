@@ -1,4 +1,3 @@
-//TODO: PopupWithForm - добавление карточки
 
 
 import './index.css';
