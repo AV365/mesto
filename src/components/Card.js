@@ -1,16 +1,10 @@
-const popupPlace = document.querySelector('.js-popup-place');
-
-const imagePreview = document.querySelector('.preview__image');
-const titlePreview = document.querySelector('.preview__title');
-
-
 export default class Card {
 
-    constructor(data, selector) {
+    constructor(data, selector, popupFnc) {
         this._name = data.name;
         this._link = data.link;
-        this._close = data.closeFunc;
         this._selector = selector;
+        this._popup = popupFnc;
     }
 
     create() {
@@ -38,12 +32,8 @@ export default class Card {
 
 
     _preview() {
-        imagePreview.src = this._link;
-        titlePreview.textContent = this._name;
-        imagePreview.alt = this._name;
-
-        this._close(popupPlace);
-    }
+        this._popup();
+            }
 
 
     _getCardTemplate() {
