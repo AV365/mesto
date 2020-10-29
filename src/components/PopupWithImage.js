@@ -1,26 +1,23 @@
 import Popup from "./Popup.js";
 
-const imagePreview = document.querySelector('.preview__image');
-const titlePreview = document.querySelector('.preview__title');
 
 export default class PopupWithImage extends Popup {
-    constructor(selector, data) {
+
+    constructor(selector, title, link) {
         super(selector);
 
-        this._link = data.link;
-        this._name = data.name;
+        this._iamge = document.querySelector(link);
+        this._name = document.querySelector(title);
+
         super.setEventListener();
     }
 
-        open()
-        {
-            imagePreview.src = this._link;
-            titlePreview.textContent = this._name;
-            imagePreview.alt = this._name;
 
-            super.open();
+    open(link, name) {
+        this._iamge.src = link;
+        this._name.textContent = name;
+        this._iamge.alt = name;
 
-        }
-
-
+        super.open();
+    }
 }

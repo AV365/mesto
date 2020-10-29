@@ -2,6 +2,11 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var ghpages = require('gh-pages');
+
+ghpages.publish('dist', function (err) {
+});
+
 module.exports = {
     entry: './src/pages/index.js',
     output: {
@@ -37,12 +42,12 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff2|woff)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],
+                test: /.(png|svg|jpg|gif)$/,
+                loader: 'file-loader?name=./images/[name].[ext]'
+            },
+            {
+                test: /.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=./vendor/[name].[ext]',
             },
             {
                 test: /\.html$/i,

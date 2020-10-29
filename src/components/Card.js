@@ -1,10 +1,10 @@
 export default class Card {
 
-    constructor(data, selector, popupFnc) {
+    constructor(data, selector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._selector = selector;
-        this._popup = popupFnc;
+        this._handleCardClick = handleCardClick;
     }
 
     create() {
@@ -17,8 +17,11 @@ export default class Card {
         return this._element;
     }
 
-    _like(evt) {
-        evt.classList.toggle('button_like-isset');
+    _like() {
+        this._element
+            .querySelector('.button_like')
+            .classList
+            .toggle('button_like-isset');
     }
 
     _remove() {
@@ -29,11 +32,6 @@ export default class Card {
             this._element = null;
         });
     }
-
-
-    _preview() {
-        this._popup();
-            }
 
 
     _getCardTemplate() {
@@ -47,11 +45,11 @@ export default class Card {
 
     _setEventListeners() {
         this._element.querySelector('.button_like').addEventListener('click', (evt) => {
-            this._like(evt.target);
+            this._like();
         });
 
         this._element.querySelector('.card-item__pic').addEventListener('click', () => {
-            this._preview();
+            this._handleCardClick();
         });
 
         this._element.querySelector('.js-card-delete').addEventListener('click', () => {
