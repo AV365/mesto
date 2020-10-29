@@ -50,5 +50,11 @@ export const selectorsSettings = {
     popupNewCardSelector: '.js-popup-card',
     popupPreviewSelector: '.js-popup-place',
     formProfileSelector: '.js-form-profile',
-    formCardSelector: '.js-form-card'
+    formCardSelector: '.js-form-card',
+    previewImageSelector: '.preview__image',
+    previewTitleSelector: '.preview__title',
+    buttonEditProfileSelector: '.button_edit',
+    buttonAddCardSelector: '.button_add',
+    inputProfileNameSelector: '.form__profile-name',
+    inputProfileInfoSelector: '.form__profile-job'
 }

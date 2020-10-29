@@ -1,5 +1,3 @@
-
-
 import './index.css';
 import {initialCards, validatorSettings, selectorsSettings} from '../utils/data.js';
 import UserInfo from "../components/UserInfo.js";
@@ -10,88 +8,95 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from "../components/PopupWithForm";
 
 
+const editButton = document.querySelector(selectorsSettings.buttonEditProfileSelector);
+const addCardButton = document.querySelector(selectorsSettings.buttonAddCardSelector);
+const nameInput = document.querySelector(selectorsSettings.inputProfileNameSelector);
+const jobInput = document.querySelector(selectorsSettings.inputProfileInfoSelector);
 
-const editButton = document.querySelector('.button_edit');
-const addCardButton = document.querySelector('.button_add');
-
-
-
-const nameInput = document.querySelector('.form__profile-name');
-const jobInput = document.querySelector('.form__profile-job');
-
-
-//Функция создания карточек
-function makeCard(items) {
-
-    const insCards = new Section({
-            items: items,
-            renderer: (item) => {
-
-                const newCard = new Card(item, selectorsSettings.cardTplSelector,
-                    (handleCardClick) => {
-                        const popupPlace = new PopupWithImage(selectorsSettings.popupPreviewSelector, item);
-                        popupPlace.open();
-                    }
-                );
-                const newCardElement = newCard.create();
-                insCards.addItem(newCardElement);
-            }
-        },
-        selectorsSettings.cardsSelector
+//Создаем карточку
+function createCard(item) {
+    const newCard = new Card(
+        item,
+        selectorsSettings.cardTplSelector,
+        (handleCardClick) => {
+            popupPlace.open(item.link, item.name);
+        }
     );
-    insCards.renderItems();
+    const newCardElement = newCard.create();
+    return newCardElement;
+
 }
+
+// SECTION
+const insCards = new Section({
+        items: initialCards,
+        renderer: (item) => {
+            const newCardElement = createCard(item);
+            insCards.addItem(newCardElement);
+        }
+    },
+    selectorsSettings.cardsSelector
+);
+
+
+//Popup с превью
+const popupPlace = new PopupWithImage(
+    selectorsSettings.popupPreviewSelector,
+    selectorsSettings.previewTitleSelector,
+    selectorsSettings.previewImageSelector
+);
+
 
 //Popup с профилем
 const userInfo = new UserInfo({name: '.profile__person', info: '.profile__job'});
 const popupProfile = new PopupWithForm(
     {
         selector: selectorsSettings.popupProfileSelector,
-        submitFnc: (evt) => {
-            const insValues = popupProfile._getInputValues();
-            userInfo.setUserInfo(insValues.name, insValues.info);
+        submitFnc: (values) => {
+            userInfo.setUserInfo(values.name, values.info);
         }
     },
     selectorsSettings.formProfileSelector);
 
 
-
-
-addCardButton.addEventListener('click', (evt) => {
-    popupNewCard.open();
-});
-
-editButton.addEventListener('click', (evt) => {
-    const getUserInfo = userInfo.getUserInfo();
-
-    nameInput.value = getUserInfo.name;
-    nameInput.focus();
-    jobInput.value = getUserInfo.info;
-    popupProfile.open();
-});
-
+//Попап с новой карточкой
 const popupNewCard = new PopupWithForm(
     {
         selector: selectorsSettings.popupNewCardSelector,
-        submitFnc: (evt) => {
-            let insValues = '';
-            insValues = popupNewCard._getInputValues();
-            let insValuesArray = '';
-            insValuesArray = [{
-                name: insValues.name,
-                link: insValues.link,
-            }];
-            makeCard(insValuesArray);
+        submitFnc: (values) => {
+            const newCard = createCard(values);
+            insCards.prependItem(newCard);
         }
     },
     selectorsSettings.formCardSelector);
 
-makeCard(initialCards);
 
-const validateProfile = new FormValidator(validatorSettings, '.js-form-profile');
+function setEventListeners() {
+    addCardButton.addEventListener('click', (evt) => {
+        popupNewCard.open();
+    });
+
+    editButton.addEventListener('click', (evt) => {
+        const getUserInfo = userInfo.getUserInfo();
+
+        nameInput.value = getUserInfo.name;
+        nameInput.focus();
+        jobInput.value = getUserInfo.info;
+        popupProfile.open();
+    });
+
+}
+
+setEventListeners();
+
+
+insCards.renderItems();
+
+
+const validateProfile = new FormValidator(validatorSettings, selectorsSettings.formProfileSelector);
 validateProfile.enableValidation();
 
-const validateCard = new FormValidator(validatorSettings, '.js-form-card');
+const validateCard = new FormValidator(validatorSettings, selectorsSettings.formCardSelector);
 validateCard.enableValidation();
 
 
