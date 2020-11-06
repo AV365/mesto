@@ -1,5 +1,6 @@
 import './index.css';
-import {initialCards, validatorSettings, selectorsSettings} from '../utils/data.js';
+import {apiSettings, initialCards, validatorSettings, selectorsSettings} from '../utils/data.js';
+import Api from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -12,6 +13,29 @@ const editButton = document.querySelector(selectorsSettings.buttonEditProfileSel
 const addCardButton = document.querySelector(selectorsSettings.buttonAddCardSelector);
 const nameInput = document.querySelector(selectorsSettings.inputProfileNameSelector);
 const jobInput = document.querySelector(selectorsSettings.inputProfileInfoSelector);
+
+const api = new Api({
+    url: apiSettings.url,
+    headers: {
+        "authorization": apiSettings.token,
+        "Content-Type": "application/json"
+    },
+});
+
+api.getCards()
+    .then((data) => {
+        const insCards = new Section({
+                items: data,
+                renderer: (item) => {
+                    const newCardElement = createCard(item);
+                    insCards.addItem(newCardElement);
+                }
+            },
+            selectorsSettings.cardsSelector
+        );
+        insCards.renderItems();
+    });
+
 
 //Создаем карточку
 function createCard(item) {
@@ -28,15 +52,15 @@ function createCard(item) {
 }
 
 // SECTION
-const insCards = new Section({
-        items: initialCards,
-        renderer: (item) => {
-            const newCardElement = createCard(item);
-            insCards.addItem(newCardElement);
-        }
-    },
-    selectorsSettings.cardsSelector
-);
+// const insCards = new Section({
+//         items: initialCards,
+//         renderer: (item) => {
+//             const newCardElement = createCard(item);
+//             insCards.addItem(newCardElement);
+//         }
+//     },
+//     selectorsSettings.cardsSelector
+// );
 
 
 //Popup с превью
@@ -48,12 +72,36 @@ const popupPlace = new PopupWithImage(
 
 
 //Popup с профилем
-const userInfo = new UserInfo({name: '.profile__person', info: '.profile__job'});
+const userInfo = new UserInfo({
+    name: selectorsSettings.profileNameSelector,
+    info: selectorsSettings.profileAboutSelector,
+    avatar: selectorsSettings.profileAvatarSelector
+});
+
+
+//загружаем информацию о пользователе
+function initUserInfo() {
+    api.getUserInfo().then(data => {
+        userInfo.initUserInfo(data);
+    });
+
+}
+
+initUserInfo();
+
+
+//api.updateUserInfo('AV365', 'INFO');
 const popupProfile = new PopupWithForm(
     {
         selector: selectorsSettings.popupProfileSelector,
         submitFnc: (values) => {
-            userInfo.setUserInfo(values.name, values.info);
+            api.updateUserInfo(values.name, values.info).then(res => {
+                    initUserInfo();
+                }
+            );
+
+
+            //userInfo.setUserInfo(values.name, values.info);
         }
     },
     selectorsSettings.formProfileSelector);
@@ -88,9 +136,6 @@ function setEventListeners() {
 }
 
 setEventListeners();
-
-
-insCards.renderItems();
 
 
 const validateProfile = new FormValidator(validatorSettings, selectorsSettings.formProfileSelector);

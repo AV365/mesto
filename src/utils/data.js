@@ -43,6 +43,12 @@ export const validatorSettings = {
     errorClass: 'form__error_active'
 };
 
+export const apiSettings = {
+    url: 'https://mesto.nomoreparties.co/v1/cohort-17/',
+    headers: 'Content-Type" : "application/json',
+    token: '26855ddc-0b32-46bf-95f9-95a4c6a68cde'
+};
+
 export const selectorsSettings = {
     cardsSelector: '.cards',
     cardTplSelector: '.js-card-item-template',
@@ -56,5 +62,8 @@ export const selectorsSettings = {
     buttonEditProfileSelector: '.button_edit',
     buttonAddCardSelector: '.button_add',
     inputProfileNameSelector: '.form__profile-name',
-    inputProfileInfoSelector: '.form__profile-job'
-}
+    inputProfileInfoSelector: '.form__profile-job',
+    profileNameSelector: '.profile__person',
+    profileAboutSelector: '.profile__job',
+    profileAvatarSelector: '.profile__avatar'
+};
