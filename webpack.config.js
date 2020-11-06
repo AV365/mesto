@@ -4,10 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var ghpages = require('gh-pages');
 
-
 ghpages.publish('dist', function (err) {
 });
-
 
 module.exports = {
     entry: './src/pages/index.js',
