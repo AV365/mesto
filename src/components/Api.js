@@ -28,13 +28,14 @@ export default class Api {
                 return Promise.reject(`Ошибка получения информации о пользователе: ${res.status}`);
             })
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 return result;
 
             })
             .catch(err => this._displayErr(err));
     }
 
+    //обновляем информацию о пользователе
     updateUserInfo(name, about) {
         return fetch(`${this.url}users/me`, {
             method: 'PATCH',
@@ -45,10 +46,33 @@ export default class Api {
             })
         })
             .then(res => {
-                return res;
-                console.log(res)
-            });
+                if (res.ok) return res.json();
+                return Promise.reject(`Ошибка добавления информации о пользователе: ${res.status}`);
+            })
+            .then(result => {
+                return result;
+            })
+            .catch(err => this._displayErr(err));
+    }
 
+    //Добавляем новое место
+    createNewPlace(name, link) {
+        return fetch(`${this.url}cards`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                return Promise.reject(`Ошибка добавления новой карточки: ${res.status}`);
+            })
+            .then(result => {
+                return result;
+            })
+            .catch(err => this._displayErr(err));
     }
 
     _displayErr(err) {

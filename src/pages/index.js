@@ -22,19 +22,48 @@ const api = new Api({
     },
 });
 
-api.getCards()
-    .then((data) => {
-        const insCards = new Section({
-                items: data,
-                renderer: (item) => {
-                    const newCardElement = createCard(item);
-                    insCards.addItem(newCardElement);
-                }
-            },
-            selectorsSettings.cardsSelector
-        );
-        insCards.renderItems();
-    });
+
+// function getCards() {
+//     api.getCards()
+//         .then((data) => {
+//             const insCards = new Section({
+//                     items: data,
+//                     renderer: (item) => {
+//                         const newCardElement = createCard(item);
+//                         insCards.addItem(newCardElement);
+//                     }
+//                 },
+//                 selectorsSettings.cardsSelector
+//             );
+//             insCards.renderItems();
+//         });
+// }
+//
+// //getCards();
+
+
+const insCards = new Section({
+        items: {},
+        renderer: (item) => {
+            const newCardElement = createCard(item);
+            insCards.addItem(newCardElement);
+        }
+    },
+    selectorsSettings.cardsSelector
+);
+
+
+function initCards(insCards) {
+    api.getCards()
+        .then((data) => {
+            insCards.items = data;
+            insCards.renderItems();
+        });
+}
+
+initCards(insCards);
+
+//insCards.renderItems();
 
 
 //Создаем карточку
@@ -90,7 +119,6 @@ function initUserInfo() {
 initUserInfo();
 
 
-//api.updateUserInfo('AV365', 'INFO');
 const popupProfile = new PopupWithForm(
     {
         selector: selectorsSettings.popupProfileSelector,
@@ -99,9 +127,6 @@ const popupProfile = new PopupWithForm(
                     initUserInfo();
                 }
             );
-
-
-            //userInfo.setUserInfo(values.name, values.info);
         }
     },
     selectorsSettings.formProfileSelector);
@@ -112,8 +137,11 @@ const popupNewCard = new PopupWithForm(
     {
         selector: selectorsSettings.popupNewCardSelector,
         submitFnc: (values) => {
-            const newCard = createCard(values);
-            insCards.prependItem(newCard);
+            api.createNewPlace(values.name, values.link).then(res => {
+                const newCard = createCard(values);
+                insCards.prependItem(newCard);
+            });
+
         }
     },
     selectorsSettings.formCardSelector);
