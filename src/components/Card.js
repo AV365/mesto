@@ -3,11 +3,21 @@ import {selectorsSettings} from "../utils/data";
 export default class Card {
 
     constructor(id, data, selectors, handleCardClick, handleCardDelete) {
+
+        //console.log(data);
+
         this._myId = id;
         this._name = data.name;
         this._link = data.link;
-        this._likeCount = data.likes.length;
+        this._likeCount = 0;
+
         this._ownerId = data.owner._id;
+        this._idCard = data._id;
+        this._likeCount = data.likes.length;
+
+        if (!data.itsVirtualCard) {
+
+        }
 
         this._handleCardClick = handleCardClick;
         this._handleCardDelete = handleCardDelete;
@@ -24,6 +34,7 @@ export default class Card {
     create() {
 
         this._element = this._getCardTemplate();
+        this._element.id = this._idCard;
         this._element.querySelector(this._cardPicSelector).src = this._link;
         this._element.querySelector(this._cardTitleSelector).textContent = this._name;
         this._element.querySelector(this._cardLikeCountSelector).textContent = this._likeCount;
@@ -48,12 +59,7 @@ export default class Card {
     }
 
     _remove() {
-        this._element.classList.toggle('card-item_closed');
-        // Мне бы хотелось сохранить плавность удаления карточки, я изменил свойства css класса, сейчас ошибки нет.
-        this._element.addEventListener('transitionend', () => {
-            this._element.remove();
-            this._element = null;
-        });
+
     }
 
 
@@ -82,7 +88,7 @@ export default class Card {
 
         // this._element.querySelector('.js-card-delete').addEventListener('click', () => {
         //     this._remove();
-        // });
+        //  });
 
         this._element.querySelector('.js-card-delete').addEventListener('click', () => {
             this._handleCardDelete();

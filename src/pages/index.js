@@ -4,6 +4,7 @@ import Api from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from "../components/PopupWithForm";
@@ -41,27 +42,6 @@ function initUserInfo() {
 initUserInfo();
 
 
-
-
-// function getCards() {
-//     api.getCards()
-//         .then((data) => {
-//             const insCards = new Section({
-//                     items: data,
-//                     renderer: (item) => {
-//                         const newCardElement = createCard(item);
-//                         insCards.addItem(newCardElement);
-//                     }
-//                 },
-//                 selectorsSettings.cardsSelector
-//             );
-//             insCards.renderItems();
-//         });
-// }
-//
-// //getCards();
-
-
 const insCards = new Section({
         items: {},
         renderer: (item) => {
@@ -97,24 +77,13 @@ function createCard(item) {
         },
         (handleCardDelete) => {
             //alert('delete');
-            console.log(item);
+            popupConfirm.open(item._id);
         }
     );
     const newCardElement = newCard.create();
     return newCardElement;
 
 }
-
-// SECTION
-// const insCards = new Section({
-//         items: initialCards,
-//         renderer: (item) => {
-//             const newCardElement = createCard(item);
-//             insCards.addItem(newCardElement);
-//         }
-//     },
-//     selectorsSettings.cardsSelector
-// );
 
 
 //Popup с превью
@@ -126,7 +95,30 @@ const popupPlace = new PopupWithImage(
 
 
 //Popup c подтверждением
+const popupConfirm = new PopupWithConfirm(
+    {
+        selector: selectorsSettings.popupConfirm,
+        submitFnc: (id) => {
+            api.deleteMyPlace(id).then(res => {
+                console.log(res);
+                if (!res.message) return new Promise.reject('Ошибка удаления');
 
+                popupConfirm.close();
+
+                const deleteELement = document.getElementById(id);
+                deleteELement.classList.toggle('card-item_closed');
+                deleteELement.addEventListener('transitionend', () => {
+                    deleteELement.remove();
+                    deleteELement = null;
+                });
+            })
+                .catch(err => {
+                    popupConfirm.close();
+
+                });
+        }
+    },
+    selectorsSettings.formConfirmSelector);
 
 const popupProfile = new PopupWithForm(
     {
@@ -147,7 +139,7 @@ const popupNewCard = new PopupWithForm(
         selector: selectorsSettings.popupNewCardSelector,
         submitFnc: (values) => {
             api.createNewPlace(values.name, values.link).then(res => {
-                const newCard = createCard(values);
+                const newCard = createCard(res);
                 insCards.prependItem(newCard);
             });
 

@@ -61,9 +61,11 @@ export const selectorsSettings = {
     popupProfileSelector: '.js-popup-profile',
     popupNewCardSelector: '.js-popup-card',
     popupPreviewSelector: '.js-popup-place',
+    popupConfirm: '.js-popup-areyousure',
 
     formProfileSelector: '.js-form-profile',
     formCardSelector: '.js-form-card',
+    formConfirmSelector: '.js-form-areyousure',
 
     previewImageSelector: '.preview__image',
     previewTitleSelector: '.preview__title',

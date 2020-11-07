@@ -75,6 +75,24 @@ export default class Api {
             .catch(err => this._displayErr(err));
     }
 
+    //Удаляем карточку
+    deleteMyPlace(id) {
+        return fetch(`${this.url}cards/${id}`, {
+            method: 'DELETE',
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                return Promise.reject(`Ошибка удаления карточки ${id} карточки: ${res.status}`);
+            })
+            .then(result => {
+                return result;
+            })
+            .catch(err => this._displayErr(err));
+    }
+
+
+
     _displayErr(err) {
         alert(err);
     }
