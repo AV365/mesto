@@ -22,6 +22,7 @@ export default class UserInfo {
         this.setUserInfo(data.name, data.about);
         this._avatar.src = data.avatar;
         this._avatar.alt = data.name;
+        this.id = data._id;
     }
 
 }

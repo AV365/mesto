@@ -2,19 +2,22 @@ import {selectorsSettings} from "../utils/data";
 
 export default class Card {
 
-    constructor(data, selectors, handleCardClick) {
-
+    constructor(id, data, selectors, handleCardClick, handleCardDelete) {
+        this._myId = id;
         this._name = data.name;
         this._link = data.link;
         this._likeCount = data.likes.length;
+        this._ownerId = data.owner._id;
+
+        this._handleCardClick = handleCardClick;
+        this._handleCardDelete = handleCardDelete;
 
         this._selector = selectors.cardTplSelector;
-        this._handleCardClick = handleCardClick;
-
         this._cardTitleSelector = selectors.cardTitleSelector;
         this._cardPicSelector = selectors.cardPicSelector;
         this._cardLikeBtnSelector = selectors.cardLikeBtnSelector;
         this._cardLikeCountSelector = selectors.cardLikeCountSelector;
+        this._cardDeleteBtnSelector = selectors.cardDeleteBtnSelector;
 
     }
 
@@ -24,6 +27,13 @@ export default class Card {
         this._element.querySelector(this._cardPicSelector).src = this._link;
         this._element.querySelector(this._cardTitleSelector).textContent = this._name;
         this._element.querySelector(this._cardLikeCountSelector).textContent = this._likeCount;
+
+        if (!this._itsMyCard()) {
+           this._element
+               .querySelector(this._cardDeleteBtnSelector)
+               .classList
+               .add('button_visibility_hidden');
+        };
 
         this._setEventListeners();
 
@@ -55,6 +65,11 @@ export default class Card {
             .cloneNode(true);
     }
 
+    _itsMyCard() {
+        if (this._myId === this._ownerId) return true;
+        else return false;
+    }
+
 
     _setEventListeners() {
         this._element.querySelector('.button_like').addEventListener('click', (evt) => {
@@ -65,9 +80,14 @@ export default class Card {
             this._handleCardClick();
         });
 
+        // this._element.querySelector('.js-card-delete').addEventListener('click', () => {
+        //     this._remove();
+        // });
+
         this._element.querySelector('.js-card-delete').addEventListener('click', () => {
-            this._remove();
+            this._handleCardDelete();
         });
+
     }
 }
 

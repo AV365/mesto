@@ -56,6 +56,7 @@ export const selectorsSettings = {
     cardPicSelector: '.card-item__pic',
     cardLikeBtnSelector: '.button_like',
     cardLikeCountSelector: '.card-item__like-count',
+    cardDeleteBtnSelector: '.js-card-delete',
 
     popupProfileSelector: '.js-popup-profile',
     popupNewCardSelector: '.js-popup-card',

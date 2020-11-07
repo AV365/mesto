@@ -23,6 +23,26 @@ const api = new Api({
 });
 
 
+//Пользователь
+const userInfo = new UserInfo({
+    name: selectorsSettings.profileNameSelector,
+    info: selectorsSettings.profileAboutSelector,
+    avatar: selectorsSettings.profileAvatarSelector
+});
+
+//загружаем информацию о пользователе
+function initUserInfo() {
+    api.getUserInfo().then(data => {
+        userInfo.initUserInfo(data);
+
+    });
+}
+
+initUserInfo();
+
+
+
+
 // function getCards() {
 //     api.getCards()
 //         .then((data) => {
@@ -69,10 +89,15 @@ initCards(insCards);
 //Создаем карточку
 function createCard(item) {
     const newCard = new Card(
+        userInfo.id,
         item,
         selectorsSettings,
         (handleCardClick) => {
             popupPlace.open(item.link, item.name);
+        },
+        (handleCardDelete) => {
+            //alert('delete');
+            console.log(item);
         }
     );
     const newCardElement = newCard.create();
@@ -100,23 +125,7 @@ const popupPlace = new PopupWithImage(
 );
 
 
-//Popup с профилем
-const userInfo = new UserInfo({
-    name: selectorsSettings.profileNameSelector,
-    info: selectorsSettings.profileAboutSelector,
-    avatar: selectorsSettings.profileAvatarSelector
-});
-
-
-//загружаем информацию о пользователе
-function initUserInfo() {
-    api.getUserInfo().then(data => {
-        userInfo.initUserInfo(data);
-    });
-
-}
-
-initUserInfo();
+//Popup c подтверждением
 
 
 const popupProfile = new PopupWithForm(

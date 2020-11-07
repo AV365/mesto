@@ -17,6 +17,7 @@
 @import url("../blocks/button/_close/button_close.css");
 @import url("../blocks/button/_delete/button_delete.css");
 @import url("../blocks/button/_disabled/button_disabled.css");
+@import url("../blocks/button/_visibility/button_visibility_hidden.css");
 @import url("../blocks/cards/cards.css");
 @import url("../blocks/card-item/card-item.css");
 @import url("../blocks/card-item/_closed/card-item_closed.css");
