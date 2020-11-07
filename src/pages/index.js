@@ -70,7 +70,7 @@ initCards(insCards);
 function createCard(item) {
     const newCard = new Card(
         item,
-        selectorsSettings.cardTplSelector,
+        selectorsSettings,
         (handleCardClick) => {
             popupPlace.open(item.link, item.name);
         }

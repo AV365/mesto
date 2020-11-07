@@ -1,16 +1,29 @@
+import {selectorsSettings} from "../utils/data";
+
 export default class Card {
 
-    constructor(data, selector, handleCardClick) {
+    constructor(data, selectors, handleCardClick) {
+
         this._name = data.name;
         this._link = data.link;
-        this._selector = selector;
+        this._likeCount = data.likes.length;
+
+        this._selector = selectors.cardTplSelector;
         this._handleCardClick = handleCardClick;
+
+        this._cardTitleSelector = selectors.cardTitleSelector;
+        this._cardPicSelector = selectors.cardPicSelector;
+        this._cardLikeBtnSelector = selectors.cardLikeBtnSelector;
+        this._cardLikeCountSelector = selectors.cardLikeCountSelector;
+
     }
 
     create() {
+
         this._element = this._getCardTemplate();
-        this._element.querySelector('.card-item__pic').src = this._link;
-        this._element.querySelector('.card-item__title').textContent = this._name;
+        this._element.querySelector(this._cardPicSelector).src = this._link;
+        this._element.querySelector(this._cardTitleSelector).textContent = this._name;
+        this._element.querySelector(this._cardLikeCountSelector).textContent = this._likeCount;
 
         this._setEventListeners();
 
@@ -19,7 +32,7 @@ export default class Card {
 
     _like() {
         this._element
-            .querySelector('.button_like')
+            .querySelector(this._cardLikeBtnSelector)
             .classList
             .toggle('button_like-isset');
     }

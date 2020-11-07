@@ -52,17 +52,27 @@ export const apiSettings = {
 export const selectorsSettings = {
     cardsSelector: '.cards',
     cardTplSelector: '.js-card-item-template',
+    cardTitleSelector: '.card-item__title',
+    cardPicSelector: '.card-item__pic',
+    cardLikeBtnSelector: '.button_like',
+    cardLikeCountSelector: '.card-item__like-count',
+
     popupProfileSelector: '.js-popup-profile',
     popupNewCardSelector: '.js-popup-card',
     popupPreviewSelector: '.js-popup-place',
+
     formProfileSelector: '.js-form-profile',
     formCardSelector: '.js-form-card',
+
     previewImageSelector: '.preview__image',
     previewTitleSelector: '.preview__title',
+
     buttonEditProfileSelector: '.button_edit',
     buttonAddCardSelector: '.button_add',
+
     inputProfileNameSelector: '.form__profile-name',
     inputProfileInfoSelector: '.form__profile-job',
+
     profileNameSelector: '.profile__person',
     profileAboutSelector: '.profile__job',
     profileAvatarSelector: '.profile__avatar'
