@@ -76,8 +76,24 @@ function createCard(item) {
             popupPlace.open(item.link, item.name);
         },
         (handleCardDelete) => {
-            //alert('delete');
             popupConfirm.open(item._id);
+        },
+        (handleCardLike) => {
+
+            //Карточка имеет мой лайк - удаление лайка по клику
+            if (newCard.hasMyLike()) {
+
+                api.likeCard(item._id, 'DELETE').then(res => {
+                    newCard.setLikeCount(res.likes.length);
+                    newCard.likesObj = res.likes;
+                });
+            }//Я еще не лайкал - ставим
+            else {
+                api.likeCard(item._id, 'PUT').then(res => {
+                    newCard.setLikeCount(res.likes.length);
+                    newCard.likesObj = res.likes;
+                });
+            }
         }
     );
     const newCardElement = newCard.create();
@@ -114,7 +130,6 @@ const popupConfirm = new PopupWithConfirm(
             })
                 .catch(err => {
                     popupConfirm.close();
-
                 });
         }
     },

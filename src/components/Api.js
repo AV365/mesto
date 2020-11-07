@@ -91,6 +91,21 @@ export default class Api {
             .catch(err => this._displayErr(err));
     }
 
+    //Ставим лайк
+    likeCard(id, method) {
+        return fetch(`${this.url}cards/likes/${id}`, {
+            method: method,
+            headers: this.headers
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                return Promise.reject(`Ошибка лайканья ${id} карточки: ${res.status}`);
+            })
+            .then(result => {
+                return result;
+            })
+            .catch(err => this._displayErr(err));
+    }
 
 
     _displayErr(err) {
