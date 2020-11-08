@@ -13,7 +13,7 @@
 </header>
 <main>
     <section class="profile">
- <div class="profile__avatar-container">
+ <div class="profile__avatar-container js-edit-avatar">
        <img src="images/avatar-img.jpg" class="profile__avatar" alt="Фотография на аватарке">
  </div>
         <div class="profile__person-info">
@@ -99,7 +99,7 @@
         <form class="form js-form-avatar" novalidate>
             <h2 class="form__title">Обновить аватар</h2>
             <fieldset class="form__set">
-                <label><input placeholder="Ссылка на аватар" type="url" name="link" class="form__input form__card-url"
+                <label><input placeholder="Ссылка на аватар" type="url" name="link" class="form__input form__avatar-url"
                               id="js-avatar-url" required><span class="form__error"
                                                               id="js-avatar-url-error">Ошибка</span></label>
             </fieldset>
@@ -113,11 +113,6 @@
     <div class="popup__container popup__size_s">
         <form class="form js-form-areyousure" novalidate>
             <h2 class="form__title">Вы уверены?</h2>
-<!--            <fieldset class="form__set">-->
-<!--                <label><input placeholder="Ссылка на аватар" type="url" name="link" class="form__input form__card-url"-->
-<!--                              id="js-avatar-url" required><span class="form__error"-->
-<!--                                                                id="js-avatar-url-error">Ошибка</span></label>-->
-<!--            </fieldset>-->
             <button aria-label="Сохранить" type="submit" class="button button_save">Да</button>
         </form>
         <button aria-label="Закрыть окно" type="button" class="button button_close"></button>

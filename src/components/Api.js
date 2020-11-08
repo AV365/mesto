@@ -2,7 +2,7 @@ export default class Api {
     constructor(config) {
         this.url = config.url;
         this.headers = config.headers;
-        console.log(this.headers);
+        //console.log(this.headers);
     }
 
 
@@ -100,6 +100,26 @@ export default class Api {
             .then(res => {
                 if (res.ok) return res.json();
                 return Promise.reject(`Ошибка лайканья ${id} карточки: ${res.status}`);
+            })
+            .then(result => {
+                return result;
+            })
+            .catch(err => this._displayErr(err));
+    }
+
+//Ставим новый аватар
+    changeAvatar(avatarUrl) {
+        return fetch(`${this.url}users/me/avatar`, {
+            method: 'PATCH',
+            headers: this.headers,
+            body: JSON.stringify({
+                    avatar: avatarUrl
+                }
+            )
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                return Promise.reject(`Ошибка замены аватара: ${res.status}`);
             })
             .then(result => {
                 return result;

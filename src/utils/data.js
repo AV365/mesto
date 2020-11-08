@@ -61,22 +61,28 @@ export const selectorsSettings = {
     popupProfileSelector: '.js-popup-profile',
     popupNewCardSelector: '.js-popup-card',
     popupPreviewSelector: '.js-popup-place',
-    popupConfirm: '.js-popup-areyousure',
+    popupConfirmSelector: '.js-popup-areyousure',
+    popupAvatarSelector: '.js-popup-avatar',
 
     formProfileSelector: '.js-form-profile',
     formCardSelector: '.js-form-card',
     formConfirmSelector: '.js-form-areyousure',
+    formAvatarSelector: '.js-form-avatar',
+
 
     previewImageSelector: '.preview__image',
     previewTitleSelector: '.preview__title',
 
     buttonEditProfileSelector: '.button_edit',
     buttonAddCardSelector: '.button_add',
+    buttonEditAvatarSelector: '.js-edit-avatar',
 
     inputProfileNameSelector: '.form__profile-name',
     inputProfileInfoSelector: '.form__profile-job',
+    inputProfileAvatarSelector: '.form__avatar-url',
 
     profileNameSelector: '.profile__person',
     profileAboutSelector: '.profile__job',
     profileAvatarSelector: '.profile__avatar'
 };
+
