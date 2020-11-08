@@ -29,13 +29,11 @@ export default class PopupWithForm extends Popup {
             evt.preventDefault();
             this._submit();
         });
-
     }
 
     _submit() {
         const formValues = this._getInputValues();
         this._submitFnc(formValues);
-        this.close();
     }
 
     close() {

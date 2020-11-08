@@ -58,6 +58,7 @@ export const selectorsSettings = {
     cardLikeCountSelector: '.card-item__like-count',
     cardDeleteBtnSelector: '.js-card-delete',
 
+    popupOpenedSelector: '.popup_opened',
     popupProfileSelector: '.js-popup-profile',
     popupNewCardSelector: '.js-popup-card',
     popupPreviewSelector: '.js-popup-place',
@@ -69,13 +70,14 @@ export const selectorsSettings = {
     formConfirmSelector: '.js-form-areyousure',
     formAvatarSelector: '.js-form-avatar',
 
-
     previewImageSelector: '.preview__image',
     previewTitleSelector: '.preview__title',
 
     buttonEditProfileSelector: '.button_edit',
     buttonAddCardSelector: '.button_add',
     buttonEditAvatarSelector: '.js-edit-avatar',
+    buttonSaveSelector: '.button_save',
+    buttonSaveDisabled: '.button_disabled',
 
     inputProfileNameSelector: '.form__profile-name',
     inputProfileInfoSelector: '.form__profile-job',
