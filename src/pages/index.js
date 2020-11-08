@@ -1,5 +1,5 @@
 import './index.css';
-import {apiSettings, initialCards, validatorSettings, selectorsSettings} from '../utils/data.js';
+import {apiSettings, validatorSettings, selectorsSettings} from '../utils/data.js';
 import Api from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from '../components/Section.js';
@@ -110,8 +110,7 @@ function createCard(item) {
             }
         }
     );
-    const newCardElement = newCard.create();
-    return newCardElement;
+    return newCard.create();
 
 }
 
